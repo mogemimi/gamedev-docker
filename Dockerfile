@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:17.04
 MAINTAINER <https://github.com/mogemimi>
 
 RUN \
