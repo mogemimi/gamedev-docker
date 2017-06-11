@@ -8,7 +8,7 @@ RUN \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip wget && \
   apt-get install -y make cmake python2.7 && \
-  apt-get install -y clang-3.7 libc++-dev && \
+  apt-get install -y clang-3.8 libc++-dev && \
   apt-get install -y mesa-common-dev libglu1-mesa-dev freeglut3-dev && \
   apt-get install -y libopenal1 libopenal-dev && \
   apt-get clean && \
