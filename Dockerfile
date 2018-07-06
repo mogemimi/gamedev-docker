@@ -4,10 +4,10 @@ MAINTAINER <https://github.com/mogemimi>
 RUN \
   apt update && \
   apt upgrade -y && \
-  apt install -y wget && \
+  apt install -y wget gnupg && \
   echo "deb http://apt.llvm.org/artful/ llvm-toolchain-artful-6.0 main" | tee /etc/apt/sources.list.d/llvm.list && \
   echo "deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful-6.0 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
-  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | tac | tac | apt-key add - && \
+  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
   apt update && \
   apt install -y \
     clang-6.0 \
