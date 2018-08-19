@@ -14,6 +14,7 @@ RUN \
     curl \
     gcc \
     git \
+    glu \
     llvm \
     make \
     mesa \
