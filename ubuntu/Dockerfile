@@ -24,11 +24,9 @@ RUN \
   apt install -y \
     build-essential \
     software-properties-common \
-    byobu \
     curl \
     git \
     htop \
-    man \
     unzip \
     make \
     cmake \
