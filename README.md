@@ -1,5 +1,3 @@
-# ubuntu-gamedev-docker
+# gamedev-docker
 
-Ubuntu base gamedev image for wercker builds.
-
-Docker Hub: [mogemimi/ubuntu-gamedev-wercker](https://hub.docker.com/r/mogemimi/ubuntu-gamedev-wercker/)
+A collection of docker containers which are mainly used by CI in [Pomdog Game Engine](https://github.com/mogemimi/pomdog).
