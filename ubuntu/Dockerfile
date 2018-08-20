@@ -43,5 +43,16 @@ RUN \
   update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 10 && \
   rm -rf /var/lib/apt/lists/*
 
+RUN \
+  mkdir cmakebuild && cd cmakebuild && \
+  wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz && \
+  tar -xf cmake-3.12.1.tar.gz && \
+  cd cmake-3.12.1 && \
+  ./bootstrap --parallel=10 --prefix=/usr/local && \
+  make -j10 && \
+  make install && \
+  cd ../.. && \
+  rm -R cmakebuild
+
 WORKDIR /root
 CMD ["bash"]
