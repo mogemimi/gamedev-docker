@@ -5,22 +5,23 @@ RUN \
   apt update && \
   apt upgrade -y && \
   apt install -y wget gnupg && \
-  echo "deb http://apt.llvm.org/artful/ llvm-toolchain-artful-6.0 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/artful/ llvm-toolchain-artful-6.0 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  echo "deb http://apt.llvm.org/disco/ llvm-toolchain-disco-8 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-8 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
   apt update && \
   apt install -y \
-    clang-6.0 \
-    libclang-common-6.0-dev \
-    libclang-6.0-dev \
-    libclang1-6.0 \
-    libllvm6.0 \
-    llvm-6.0 \
-    llvm-6.0-dev \
-    llvm-6.0-runtime \
-    lldb-6.0 \
-    python-lldb-6.0 \
-    clang-format-6.0 && \
+    clang-8 \
+    libclang-common-8-dev \
+    libclang-8-dev \
+    libclang1-8 \
+    libllvm8 \
+    llvm-8 \
+    llvm-8-dev \
+    llvm-8-runtime \
+    lldb-8 \
+    lld-8 \
+    python-clang-8 \
+    clang-format-8 && \
   apt install -y \
     build-essential \
     software-properties-common \
@@ -29,8 +30,8 @@ RUN \
     htop \
     unzip \
     make \
+    ninja-build \
     cmake \
-    python2.7 \
     golang-go \
     libc++-dev \
     libc++abi-dev \
@@ -40,8 +41,9 @@ RUN \
     libopenal1 \
     libopenal-dev && \
   apt clean && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 10 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 10 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-8 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-8 10 && \
   rm -rf /var/lib/apt/lists/*
 
 RUN \
