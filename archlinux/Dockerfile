@@ -28,9 +28,9 @@ RUN \
 
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz && \
-  tar -xf cmake-3.12.1.tar.gz && \
-  cd cmake-3.12.1 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.14.3/cmake-3.14.3.tar.gz && \
+  tar -xf cmake-3.14.3.tar.gz && \
+  cd cmake-3.14.3 && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
   make -j10 && \
   make install && \
