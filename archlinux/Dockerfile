@@ -1,5 +1,5 @@
-FROM base/devel:latest
-MAINTAINER <https://github.com/mogemimi>
+FROM archlinux/base:latest
+LABEL maintainer "https://github.com/mogemimi"
 
 RUN \
   pacman -Sy --noconfirm archlinux-keyring && pacman -Su --noconfirm && \
@@ -15,6 +15,7 @@ RUN \
     gcc \
     git \
     glu \
+    go \
     llvm \
     make \
     mesa \

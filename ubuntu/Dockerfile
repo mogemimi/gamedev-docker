@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-MAINTAINER <https://github.com/mogemimi>
+FROM ubuntu:19.04
+LABEL maintainer "https://github.com/mogemimi"
 
 RUN \
   apt update && \
@@ -31,6 +31,7 @@ RUN \
     make \
     cmake \
     python2.7 \
+    golang-go \
     libc++-dev \
     libc++abi-dev \
     mesa-common-dev \
