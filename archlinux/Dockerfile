@@ -21,6 +21,7 @@ RUN \
     mesa \
     ninja \
     openal \
+    openssl \
     tar \
     vim \
     wget \
@@ -29,9 +30,9 @@ RUN \
 
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.14.3/cmake-3.14.3.tar.gz && \
-  tar -xf cmake-3.14.3.tar.gz && \
-  cd cmake-3.14.3 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.16.4/cmake-3.16.4.tar.gz && \
+  tar -xf cmake-3.16.4.tar.gz && \
+  cd cmake-3.16.4 && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
   make -j10 && \
   make install && \
