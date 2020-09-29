@@ -5,23 +5,26 @@ RUN \
   apt update && \
   apt upgrade -y && \
   apt install -y wget gnupg && \
-  echo "deb http://apt.llvm.org/disco/ llvm-toolchain-disco-8 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/disco/ llvm-toolchain-disco-8 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
+  echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   apt update && \
   apt install -y \
-    clang-8 \
-    libclang-common-8-dev \
-    libclang-8-dev \
-    libclang1-8 \
-    libllvm8 \
-    llvm-8 \
-    llvm-8-dev \
-    llvm-8-runtime \
-    lldb-8 \
-    lld-8 \
-    python-clang-8 \
-    clang-format-8 && \
+    libllvm11 \
+    llvm-11 \
+    llvm-11-dev \
+    llvm-11-runtime \
+    clang-11 \
+    clang-tools-11 \
+    libclang-11-dev \
+    libclang1-11 \
+    clang-format-11 \
+    clangd-11 \
+    libfuzzer-11-dev \
+    lldb-11 \
+    lld-11 \
+    libc++-11-dev \
+    libc++abi-11-dev && \
   apt install -y \
     build-essential \
     software-properties-common \
@@ -33,8 +36,6 @@ RUN \
     ninja-build \
     cmake \
     golang-go \
-    libc++-dev \
-    libc++abi-dev \
     libssl-dev \
     mesa-common-dev \
     libglu1-mesa-dev \
@@ -42,9 +43,9 @@ RUN \
     libopenal1 \
     libopenal-dev && \
   apt clean && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 10 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-8 10 && \
-  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-8 10 && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-11 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-11 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-11 10 && \
   rm -rf /var/lib/apt/lists/*
 
 RUN \
