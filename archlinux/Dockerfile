@@ -1,6 +1,7 @@
 FROM archlinux/base:latest
 LABEL maintainer "https://github.com/mogemimi"
 
+# Install build tools and libraries
 RUN \
   pacman -Sy --noconfirm archlinux-keyring && \
   pacman -Su --noconfirm && \
@@ -31,6 +32,7 @@ RUN \
     zip && \
   pacman -Scc
 
+# Install CMake 3.18.3
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
   wget https://github.com/Kitware/CMake/releases/download/v3.18.3/cmake-3.18.3.tar.gz && \
