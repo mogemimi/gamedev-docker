@@ -2,8 +2,11 @@ FROM archlinux/base:latest
 LABEL maintainer "https://github.com/mogemimi"
 
 RUN \
-  pacman -Sy --noconfirm archlinux-keyring && pacman -Su --noconfirm && \
-  pacman-key --init && pacman-key --populate archlinux && pacman-key --refresh-keys && \
+  pacman -Sy --noconfirm archlinux-keyring && \
+  pacman -Su --noconfirm && \
+  pacman-key --init && \
+  pacman-key --populate archlinux && \
+  pacman-key --refresh-keys --keyserver hkp://pool.sks-keyservers.net && \
   pacman -Syu --noconfirm && \
   pacman-db-upgrade && \
   pacman -S --noconfirm \
