@@ -1,4 +1,4 @@
-FROM archlinux/base:latest
+FROM archlinux:latest
 LABEL maintainer "https://github.com/mogemimi"
 
 # Install build tools and libraries
@@ -7,7 +7,6 @@ RUN \
   pacman -Su --noconfirm && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
-  pacman-key --refresh-keys --keyserver hkp://pool.sks-keyservers.net && \
   pacman -Syu --noconfirm && \
   pacman-db-upgrade && \
   pacman -S --noconfirm \
