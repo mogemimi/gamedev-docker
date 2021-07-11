@@ -10,31 +10,31 @@ RUN \
   apt-get upgrade -y && \
   apt-get install -y wget gnupg
 
-# Install LLVM and Clang 11
+# Install LLVM and Clang 12
 RUN \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-  echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  echo "deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-12 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-12 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
   apt-get install -y \
-    libllvm11 \
-    llvm-11 \
-    llvm-11-dev \
-    llvm-11-runtime \
-    clang-11 \
-    clang-tools-11 \
-    libclang-11-dev \
-    libclang1-11 \
-    clang-format-11 \
-    clangd-11 \
-    libfuzzer-11-dev \
-    lldb-11 \
-    lld-11 \
-    libc++-11-dev \
-    libc++abi-11-dev && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-11 10 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-11 10 && \
-  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-11 10 && \
+    libllvm12 \
+    llvm-12 \
+    llvm-12-dev \
+    llvm-12-runtime \
+    clang-12 \
+    clang-tools-12 \
+    libclang-12-dev \
+    libclang1-12 \
+    clang-format-12 \
+    clangd-12 \
+    libfuzzer-12-dev \
+    lldb-12 \
+    lld-12 \
+    libc++-12-dev \
+    libc++abi-12-dev && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-12 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-12 10 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
