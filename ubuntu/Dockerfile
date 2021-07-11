@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:20.10
 LABEL maintainer "https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -13,8 +13,8 @@ RUN \
 # Install LLVM and Clang 12
 RUN \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-  echo "deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-12 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-12 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  echo "deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-12 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-12 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
   apt-get install -y \
     libllvm12 \
