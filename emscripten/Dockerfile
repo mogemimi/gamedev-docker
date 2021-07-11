@@ -36,12 +36,12 @@ RUN \
   ./emsdk activate latest && \
   . ./emsdk_env.sh
 
-# Install CMake 3.19.2
+# Install CMake 3.20.5
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2.tar.gz && \
-  tar -xf cmake-3.19.2.tar.gz && \
-  cd cmake-3.19.2 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5.tar.gz && \
+  tar -xf cmake-3.20.5.tar.gz && \
+  cd cmake-3.20.5 && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
   make -j2 && \
   make install && \
