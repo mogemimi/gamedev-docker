@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:21.04
 LABEL maintainer "https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
