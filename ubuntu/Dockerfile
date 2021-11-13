@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:21.04
 LABEL maintainer "https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -10,31 +10,31 @@ RUN \
   apt-get upgrade -y && \
   apt-get install -y wget gnupg
 
-# Install LLVM and Clang 12
+# Install LLVM and Clang 13
 RUN \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-  echo "deb http://apt.llvm.org/groovy/ llvm-toolchain-groovy-12 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/groovy/ llvm-toolchain-groovy-12 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  echo "deb http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-13 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/hirsute/ llvm-toolchain-hirsute-13 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
   apt-get install -y \
-    libllvm12 \
-    llvm-12 \
-    llvm-12-dev \
-    llvm-12-runtime \
-    clang-12 \
-    clang-tools-12 \
-    libclang-12-dev \
-    libclang1-12 \
-    clang-format-12 \
-    clangd-12 \
-    libfuzzer-12-dev \
-    lldb-12 \
-    lld-12 \
-    libc++-12-dev \
-    libc++abi-12-dev && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 10 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-12 10 && \
-  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-12 10 && \
+    libllvm13 \
+    llvm-13 \
+    llvm-13-dev \
+    llvm-13-runtime \
+    clang-13 \
+    clang-tools-13 \
+    libclang-13-dev \
+    libclang1-13 \
+    clang-format-13 \
+    clangd-13 \
+    libfuzzer-13-dev \
+    lldb-13 \
+    lld-13 \
+    libc++-13-dev \
+    libc++abi-13-dev && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-13 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-13 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-13 10 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
@@ -61,14 +61,14 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-# Install CMake 3.20.5
+# Install CMake 3.21.4
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5.tar.gz && \
-  tar -xf cmake-3.20.5.tar.gz && \
-  cd cmake-3.20.5 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.21.4/cmake-3.21.4.tar.gz && \
+  tar -xf cmake-3.21.4.tar.gz && \
+  cd cmake-3.21.4 && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
-  make -j10 && \
+  make -j2 && \
   make install && \
   cd ../.. && \
   rm -R cmakebuild

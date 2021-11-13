@@ -31,17 +31,5 @@ RUN \
     zip && \
   pacman -Scc
 
-# Install CMake 3.20.5
-RUN \
-  mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5.tar.gz && \
-  tar -xf cmake-3.20.5.tar.gz && \
-  cd cmake-3.20.5 && \
-  ./bootstrap --parallel=10 --prefix=/usr/local && \
-  make -j10 && \
-  make install && \
-  cd ../.. && \
-  rm -R cmakebuild
-
 WORKDIR /home
 CMD ["bash"]
