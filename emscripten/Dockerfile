@@ -1,4 +1,4 @@
-FROM ubuntu:21.10
+FROM ubuntu:22.04
 LABEL maintainer "https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -36,12 +36,12 @@ RUN \
   ./emsdk activate latest && \
   . ./emsdk_env.sh
 
-# Install CMake 3.21.4
+# Install CMake 3.24.2
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.21.4/cmake-3.21.4.tar.gz && \
-  tar -xf cmake-3.21.4.tar.gz && \
-  cd cmake-3.21.4 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz && \
+  tar -xf cmake-3.24.2.tar.gz && \
+  cd cmake-3.24.2 && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
   make -j2 && \
   make install && \
