@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:22.10
 LABEL maintainer "https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -13,8 +13,8 @@ RUN \
 # Install LLVM and Clang 15
 RUN \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-  echo "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-15 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  echo "deb http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-15 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-15 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
   apt-get install -y \
     libllvm15 \
