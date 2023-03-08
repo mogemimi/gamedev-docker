@@ -10,6 +10,34 @@ RUN \
   apt-get upgrade -y && \
   apt-get install -y wget gnupg
 
+# Install LLVM and Clang 15
+RUN \
+  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
+  echo "deb http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-15 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/kinetic/ llvm-toolchain-kinetic-15 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  apt-get update && \
+  apt-get install -y \
+    libllvm15 \
+    llvm-15 \
+    llvm-15-dev \
+    llvm-15-runtime \
+    clang-15 \
+    clang-tools-15 \
+    libclang-15-dev \
+    libclang1-15 \
+    clang-format-15 \
+    clangd-15 \
+    libfuzzer-15-dev \
+    lldb-15 \
+    lld-15 \
+    libc++-15-dev \
+    libc++abi-15-dev && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-15 10 && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
 # Install build tools and libraries
 RUN \
   apt-get update && \
@@ -36,12 +64,13 @@ RUN \
   ./emsdk activate latest && \
   . ./emsdk_env.sh
 
-# Install CMake 3.24.2
+# Install CMake 3.25.3
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz && \
-  tar -xf cmake-3.24.2.tar.gz && \
-  cd cmake-3.24.2 && \
+  wget https://github.com/Kitware/CMake/releases/download/v3.25.3/cmake-3.25.3.tar.gz && \
+  tar -xf cmake-3.25.3.tar.gz && \
+  cd cmake-3.25.3 && \
+  export CC=clang && export CXX=clang++ && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
   make -j2 && \
   make install && \
