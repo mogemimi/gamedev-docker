@@ -1,5 +1,5 @@
 FROM archlinux:latest
-LABEL maintainer "https://github.com/mogemimi"
+LABEL maintainer="https://github.com/mogemimi"
 
 # Install build tools and libraries
 RUN \

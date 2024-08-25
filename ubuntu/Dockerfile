@@ -1,5 +1,5 @@
 FROM ubuntu:24.04
-LABEL maintainer "https://github.com/mogemimi"
+LABEL maintainer="https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
