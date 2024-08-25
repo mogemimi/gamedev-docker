@@ -1,6 +1,6 @@
 # Ubuntu base container for gamedev
 
-Docker container based on Ubuntu 20.04 LTS for gamedev with latest LLVM Clang.
+Docker container based on latest Ubuntu LTS for gamedev with latest LLVM Clang.
 
 ```sh
 docker pull mogemimi/gamedev-ubuntu
