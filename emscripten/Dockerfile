@@ -4,6 +4,7 @@ LABEL maintainer="https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+ARG CMAKE_VERSION=4.2.3
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
@@ -52,7 +53,6 @@ RUN \
     unzip \
     make \
     ninja-build \
-    cmake \
     golang-go \
     python3 \
     python-is-python3 \
@@ -68,18 +68,11 @@ RUN \
   ./emsdk activate latest && \
   . ./emsdk_env.sh
 
-# Install CMake 4.2.3
+# Install CMake (pre-built binary)
 RUN \
-  mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v4.2.3/cmake-4.2.3.tar.gz && \
-  tar -xf cmake-4.2.3.tar.gz && \
-  cd cmake-4.2.3 && \
-  export CC=clang && export CXX=clang++ && \
-  ./bootstrap --parallel=10 --prefix=/usr/local && \
-  make -j2 && \
-  make install && \
-  cd ../.. && \
-  rm -R cmakebuild
+  wget -q "https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz" && \
+  tar -xf "cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz" -C /usr/local --strip-components=1 && \
+  rm "cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz"
 
 WORKDIR /home
 CMD ["bash"]
