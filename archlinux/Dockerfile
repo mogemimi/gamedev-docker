@@ -25,6 +25,7 @@ RUN \
     ninja \
     openal \
     openssl \
+    python \
     tar \
     vim \
     wget \

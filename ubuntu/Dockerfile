@@ -51,6 +51,8 @@ RUN \
     ninja-build \
     cmake \
     golang-go \
+    python3 \
+    python-is-python3 \
     libssl-dev \
     mesa-common-dev \
     libglu1-mesa-dev \

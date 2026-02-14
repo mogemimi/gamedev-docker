@@ -51,6 +51,8 @@ RUN \
     ninja-build \
     cmake \
     golang-go \
+    python3 \
+    python-is-python3 \
     libssl-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
