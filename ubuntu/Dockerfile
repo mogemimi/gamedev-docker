@@ -41,9 +41,8 @@ RUN \
 # Install build tools and libraries
 RUN \
   apt-get update && \
-  apt-get install -y \
+  apt-get install -y --no-install-recommends \
     build-essential \
-    software-properties-common \
     curl \
     git \
     golang-go \
@@ -53,10 +52,10 @@ RUN \
     python-is-python3 \
     unzip \
     libssl-dev \
+    libx11-dev \
     mesa-common-dev \
     libglu1-mesa-dev \
     freeglut3-dev \
-    libopenal1 \
     libopenal-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
