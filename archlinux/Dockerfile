@@ -1,5 +1,8 @@
+# syntax=docker/dockerfile:1
 FROM archlinux:latest
 LABEL maintainer="https://github.com/mogemimi"
+
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
 # Install build tools and libraries
 RUN \

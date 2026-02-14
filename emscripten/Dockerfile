@@ -1,8 +1,11 @@
+# syntax=docker/dockerfile:1
 FROM ubuntu:24.04
 LABEL maintainer="https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
 # Install prerequisites
 RUN \
@@ -78,5 +81,5 @@ RUN \
   cd ../.. && \
   rm -R cmakebuild
 
-WORKDIR /root
+WORKDIR /home
 CMD ["bash"]
