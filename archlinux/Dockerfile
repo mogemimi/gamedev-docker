@@ -30,10 +30,9 @@ RUN \
     openssl \
     python \
     tar \
-    vim \
     wget \
     zip && \
-  pacman -Scc
+  pacman -Scc --noconfirm
 
 WORKDIR /home
 CMD ["bash"]
