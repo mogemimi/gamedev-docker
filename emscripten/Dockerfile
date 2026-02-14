@@ -46,7 +46,6 @@ RUN \
     software-properties-common \
     curl \
     git \
-    htop \
     unzip \
     make \
     ninja-build \
