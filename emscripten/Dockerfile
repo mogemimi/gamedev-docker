@@ -56,13 +56,19 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-# Install emscripten SDK
+# Install Emscripten SDK
 RUN \
-  git clone https://github.com/emscripten-core/emsdk.git && \
-  cd emsdk && \
+  git clone --depth 1 https://github.com/emscripten-core/emsdk.git /emsdk && \
+  cd /emsdk && \
   ./emsdk install latest && \
-  ./emsdk activate latest && \
-  . ./emsdk_env.sh
+  ./emsdk activate latest
+
+ENV PATH="/emsdk:/emsdk/upstream/emscripten:${PATH}"
+ENV EMSDK="/emsdk"
+
+# NOTE: Since /emsdk/upstream/emscripten/cache is owned by root and cannot be
+#       written by non-root users, EM_CACHE must be set if non-root users use emcc.
+# ENV EM_CACHE="/path/to/<WORKDIR>/.emscripten_cache"
 
 # Install CMake (pre-built binary)
 RUN \
