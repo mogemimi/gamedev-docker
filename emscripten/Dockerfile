@@ -3,7 +3,7 @@ FROM ubuntu:24.04
 LABEL maintainer="https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+ARG LLVM_VERSION=21
 ARG CMAKE_VERSION=4.2.3
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
@@ -11,34 +11,30 @@ SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 # Install prerequisites
 RUN \
   apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y wget gnupg
+  apt-get install -y --no-install-recommends \
+    ca-certificates \
+    gnupg \
+    wget && \
+  rm -rf /var/lib/apt/lists/*
 
-# Install LLVM and Clang 21
+# Install LLVM and Clang
 RUN \
-  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-  echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-21 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-21 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  mkdir -p /etc/apt/keyrings && \
+  wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key \
+    | gpg --dearmor -o /etc/apt/keyrings/llvm.gpg && \
+  echo "deb [signed-by=/etc/apt/keyrings/llvm.gpg] http://apt.llvm.org/noble/ llvm-toolchain-noble-${LLVM_VERSION} main" \
+    > /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
-  apt-get install -y \
-    libllvm21 \
-    llvm-21 \
-    llvm-21-dev \
-    llvm-21-runtime \
-    clang-21 \
-    clang-tools-21 \
-    libclang-21-dev \
-    libclang1-21 \
-    clang-format-21 \
-    clangd-21 \
-    libfuzzer-21-dev \
-    lldb-21 \
-    lld-21 \
-    libc++-21-dev \
-    libc++abi-21-dev && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 10 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-21 10 && \
-  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-21 10 && \
+  apt-get install -y --no-install-recommends \
+    clang-${LLVM_VERSION} \
+    clang-format-${LLVM_VERSION} \
+    clang-tools-${LLVM_VERSION} \
+    lld-${LLVM_VERSION} \
+    libc++-${LLVM_VERSION}-dev \
+    libc++abi-${LLVM_VERSION}-dev && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${LLVM_VERSION} 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-${LLVM_VERSION} 10 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
