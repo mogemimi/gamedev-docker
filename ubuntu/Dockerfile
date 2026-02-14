@@ -61,12 +61,12 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-# Install CMake 3.30.2
+# Install CMake 4.2.3
 RUN \
   mkdir cmakebuild && cd cmakebuild && \
-  wget https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2.tar.gz && \
-  tar -xf cmake-3.30.2.tar.gz && \
-  cd cmake-3.30.2 && \
+  wget https://github.com/Kitware/CMake/releases/download/v4.2.3/cmake-4.2.3.tar.gz && \
+  tar -xf cmake-4.2.3.tar.gz && \
+  cd cmake-4.2.3 && \
   export CC=clang && export CXX=clang++ && \
   ./bootstrap --parallel=10 --prefix=/usr/local && \
   make -j2 && \
