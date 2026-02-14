@@ -46,12 +46,12 @@ RUN \
     software-properties-common \
     curl \
     git \
-    unzip \
+    golang-go \
     make \
     ninja-build \
-    golang-go \
     python3 \
     python-is-python3 \
+    unzip \
     libssl-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
