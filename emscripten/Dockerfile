@@ -10,31 +10,31 @@ RUN \
   apt-get upgrade -y && \
   apt-get install -y wget gnupg
 
-# Install LLVM and Clang 18
+# Install LLVM and Clang 21
 RUN \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-  echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main" | tee /etc/apt/sources.list.d/llvm.list && \
-  echo "deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+  echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-21 main" | tee /etc/apt/sources.list.d/llvm.list && \
+  echo "deb-src http://apt.llvm.org/noble/ llvm-toolchain-noble-21 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
   apt-get install -y \
-    libllvm18 \
-    llvm-18 \
-    llvm-18-dev \
-    llvm-18-runtime \
-    clang-18 \
-    clang-tools-18 \
-    libclang-18-dev \
-    libclang1-18 \
-    clang-format-18 \
-    clangd-18 \
-    libfuzzer-18-dev \
-    lldb-18 \
-    lld-18 \
-    libc++-18-dev \
-    libc++abi-18-dev && \
-  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 10 && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 10 && \
-  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-18 10 && \
+    libllvm21 \
+    llvm-21 \
+    llvm-21-dev \
+    llvm-21-runtime \
+    clang-21 \
+    clang-tools-21 \
+    libclang-21-dev \
+    libclang1-21 \
+    clang-format-21 \
+    clangd-21 \
+    libfuzzer-21-dev \
+    lldb-21 \
+    lld-21 \
+    libc++-21-dev \
+    libc++abi-21-dev && \
+  update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 10 && \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-21 10 && \
+  update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-21 10 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
