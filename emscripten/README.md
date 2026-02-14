@@ -1,8 +1,8 @@
 # Emscripten container for gamedev
 
 ```sh
-docker pull mogemimi/gamedev-ubuntu
-docker run -t -i mogemimi/gamedev-ubuntu
+docker pull mogemimi/gamedev-emscripten
+docker run -t -i mogemimi/gamedev-emscripten
 # /emsdk/upstream/emscripten/em++ --version
 ```
 
