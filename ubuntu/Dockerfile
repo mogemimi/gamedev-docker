@@ -30,6 +30,7 @@ RUN \
     clang-format-${LLVM_VERSION} \
     clang-tools-${LLVM_VERSION} \
     lld-${LLVM_VERSION} \
+    libclang-rt-${LLVM_VERSION}-dev \
     libc++-${LLVM_VERSION}-dev \
     libc++abi-${LLVM_VERSION}-dev && \
   update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 10 && \
