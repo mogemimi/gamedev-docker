@@ -28,7 +28,6 @@ RUN \
     ninja \
     openal \
     openssl \
-    python \
     tar \
     wget \
     zip && \

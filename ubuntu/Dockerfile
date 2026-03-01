@@ -49,8 +49,6 @@ RUN \
     golang-go \
     make \
     ninja-build \
-    python3 \
-    python-is-python3 \
     unzip \
     libssl-dev \
     libx11-dev \
