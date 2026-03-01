@@ -29,6 +29,7 @@ RUN \
     openal \
     openssl \
     tar \
+    unzip \
     wget \
     zip && \
   pacman -Scc --noconfirm
