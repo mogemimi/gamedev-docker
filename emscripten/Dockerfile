@@ -4,7 +4,7 @@ LABEL maintainer="https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG LLVM_VERSION=21
-ARG CMAKE_VERSION=4.2.3
+ARG CMAKE_VERSION=4.3.4
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
