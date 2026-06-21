@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 LABEL maintainer="https://github.com/mogemimi"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -22,7 +22,7 @@ RUN \
   mkdir -p /etc/apt/keyrings && \
   wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key \
     | gpg --dearmor -o /etc/apt/keyrings/llvm.gpg && \
-  echo "deb [signed-by=/etc/apt/keyrings/llvm.gpg] http://apt.llvm.org/noble/ llvm-toolchain-noble-${LLVM_VERSION} main" \
+  echo "deb [signed-by=/etc/apt/keyrings/llvm.gpg] http://apt.llvm.org/resolute/ llvm-toolchain-resolute-${LLVM_VERSION} main" \
     > /etc/apt/sources.list.d/llvm.list && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
